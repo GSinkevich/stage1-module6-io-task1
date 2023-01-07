@@ -21,8 +21,10 @@ public class FileReader {
             profile.setEmail(keyValuePair[10]);
             profile.setPhone(Long.parseLong(keyValuePair[14]));
 
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException(ex.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
 
         return  profile;
