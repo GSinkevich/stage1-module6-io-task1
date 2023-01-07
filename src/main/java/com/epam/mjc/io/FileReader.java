@@ -5,7 +5,7 @@ import java.io.*;
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
-
+        Profile profile = new Profile();
         try (FileInputStream fileInputStream = new FileInputStream(file.getPath())) {
             int ch;
             StringBuilder stringBuilder = new StringBuilder();
@@ -23,21 +23,17 @@ public class FileReader {
                     keyValuePair[i] = mas[1];
                 }
             }
-            int Age = Integer.parseInt(keyValuePair[1]);
-            long Phone = Long.parseLong(keyValuePair[3]);
+            int age = Integer.parseInt(keyValuePair[1]);
+            long phone = Long.parseLong(keyValuePair[3]);
 
-            var profile = new Profile(keyValuePair[0],Age,keyValuePair[2],Phone);
-            return profile;
+            profile = new Profile(keyValuePair[0],age,keyValuePair[2],phone);
 
-        } catch (FileNotFoundException e) {
-            e.getMessage();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (FileNotFoundException | ArrayIndexOutOfBoundsException e) {
             e.getMessage();
         } catch (IOException e) {
             e.getMessage();
         }
-
-        return null;
+        return profile;
     }
 }
 
