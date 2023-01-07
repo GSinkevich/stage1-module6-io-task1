@@ -1,6 +1,7 @@
 package com.epam.mjc.io;
 
 import java.io.*;
+import java.security.MessageDigest;
 
 
 public class FileReader {
@@ -19,8 +20,10 @@ public class FileReader {
            String[] keyValuePair = line.split("\r\n");
             for (int i = 0; i < keyValuePair.length; i++) {
                 keyValuePair[i] = keyValuePair[i].replaceAll("\\s", "");
-                String [] mas = keyValuePair[i].split(":",2);
-                keyValuePair[i] = mas[1];
+                String[] mas = keyValuePair[i].split(":", 2);
+                if (mas.length >= 1) {
+                    keyValuePair[i] = mas[1];
+                }
             }
 
 
@@ -32,9 +35,11 @@ public class FileReader {
             profile.setPhone(Phone);
 
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            e.getMessage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.getMessage();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.getMessage();
         }
         return profile;
     }
