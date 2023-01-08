@@ -14,7 +14,7 @@ public class FileReader {
             }
 
            String line = stringBuilder.toString();
-           String[] keyValuePair = line.split("\r\n");
+           String[] keyValuePair = line.split(System.lineSeparator());
 
             for (int i = 0; i < keyValuePair.length; i++) {
                 keyValuePair[i] = keyValuePair[i].replaceAll("\\s", "");
@@ -28,9 +28,7 @@ public class FileReader {
 
             profile = new Profile(keyValuePair[0],age,keyValuePair[2],phone);
 
-        } catch (FileNotFoundException | ArrayIndexOutOfBoundsException e) {
-            e.getMessage();
-        } catch (IOException e) {
+        } catch (ArrayIndexOutOfBoundsException | IOException e) {
             e.getMessage();
         }
         return profile;
